@@ -5,6 +5,7 @@ import {ReactComponent as ArrowRIcon} from "../assets/svg/keyboardArrowRightIcon
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import {toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
+import OAuth from "../components/OAuth";
 
 function Signin(props) {
 
@@ -78,7 +79,7 @@ function Signin(props) {
                     </div>
                 </form>
 
-                {/* O auth*/}
+                <OAuth/>
 
                 <Link to='/signup' className='registerLink'>
                     Sign up
