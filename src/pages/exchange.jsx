@@ -6,7 +6,7 @@ import {toast} from "react-toastify";
 import Spinner from "../components/Spinner";
 import ListingItem from "../components/listingItem";
 
-function Category(props) {
+function Exchange(props) {
     const [listings, setListings] =useState(null)
     const [loading, setLoading] = useState(null)
     const params = useParams()
@@ -19,7 +19,7 @@ function Category(props) {
                 //Create a query
                 // params.categoryName defined in App.js
                 const q = query(listingRef,
-                    where('type','==',params.categoryName),
+                    where('type','==','exchange'),
                     orderBy('timestamp','desc'),
                     limit(10))
                 //Execute query
@@ -27,10 +27,10 @@ function Category(props) {
                 // initial
                 let listings = []
                 querySnap.forEach((doc)=>{
-                   return listings.push({
-                       id:doc.id,
-                       data: doc.data()
-                   })
+                    return listings.push({
+                        id:doc.id,
+                        data: doc.data()
+                    })
                 })
 
                 setListings(listings)
@@ -50,7 +50,7 @@ function Category(props) {
         <div className='category'>
             <header>
                 <p className='pageHeader'>
-                    {params.categoryName === 'rent'? 'Rent':'Sale'}
+                    Exchange
                 </p>
             </header>
 
@@ -62,13 +62,13 @@ function Category(props) {
                         <ul className='categoryListings'>
                             {listings.map((item)=>(
                                 <ListingItem listing={item.data} id={item.id} key={item.id}/>
-                                ))}
+                            ))}
                         </ul>
                     </main>
                 </>):
-                (<p>No content for {params.categoryName}</p>)}
+                (<p>No content for exchange</p>)}
         </div>
     );
 }
 
-export default Category;
+export default Exchange;
